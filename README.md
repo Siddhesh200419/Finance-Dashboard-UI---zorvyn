@@ -1,68 +1,70 @@
 # fin.sight — Finance Dashboard
 
-A structured and optimized React-based finance dashboard.
+A personal finance dashboard built with React. Track spending, view trends, and get quick insights — all in one place.
 
-## Overview of Approach
+---
 
-The core objective was to transform a single-file HTML dashboard into a modern, scalable, and performant React application. 
+## What is this?
 
-### Key Architectural Decisions:
-- **Component-Based Architecture**: Broken down the UI into logical, reusable components (Charts, Layout, Dashboard sections) to improve maintainability.
-- **State Management**: Implemented a global `DashboardContext` using React's Context API to manage shared data like transactions and user roles, while keeping local UI state (like modal visibility) within relevant components.
-- **Performance Optimization**: 
-    - Used **Lazy Loading** (`React.lazy` and `Suspense`) to split the application into chunks, loading only what the user needs.
-    - Applied **Memoization** (`React.memo`, `useMemo`, `useCallback`) to prevent unnecessary re-renders of heavy components like charts and tables.
-- **Theme Management**: Integrated a custom `ThemeContext` that supports system-preference detection, manual toggling, and persistence via `localStorage`.
+fin.sight lets you monitor your finances in a clean, fast interface. Browse transactions, spot spending patterns, export your data, and toggle between light and dark mode. Built to be responsive, so it works on phones too.
+
+---
 
 ## Features
 
-- **Overview Section**: Real-time summary cards, balance trends (Line Chart), and spending distribution (Doughnut Chart).
-- **Transactions Section**: 
-    - Full list of all financial records with advanced filtering (Type, Category).
-    - Search functionality and multi-column sorting.
-    - CSV Export capability for data portability.
-    - **Admin Mode**: Special role-based access to add or remove transactions.
-- **Insights Section**: Automated financial analysis including top spending categories, month-over-month trends, and savings rate evaluations.
-- **Dynamic Dark/Light Mode**: A modern pill-style toggle for seamless switching between themes.
-- **Responsive Design**: Optimized for all screen sizes, including specialized fixes for small devices like the iPhone SE.
+- **Summary cards** — Quick look at your balance, income, and expenses
+- **Charts** — Line chart for balance trends, donut chart for spending by category
+- **Transactions** — Filter by type/category, search, sort by any column, and export to CSV
+- **Admin mode** — Role-based access to add or delete transactions
+- **Insights** — Top spending categories, month-over-month changes, and savings rate
+- **Dark / Light mode** — Toggles anytime, preference saved to localStorage
+- **Responsive** — Works across all screen sizes, including small phones like iPhone SE
 
-## Setup Instructions
+---
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v16 or higher)
-- npm (v7 or higher)
+## How it's built
 
-### Installation
+**Component structure** — The UI is split into logical folders: `Charts`, `Layout`, and `Dashboard`. Each piece is its own component, so it's easy to find, edit, or reuse things without touching unrelated code.
 
-1. **Clone the repository** (if applicable) or navigate to the project folder:
-   ```bash
-   cd finance-Dashboard
-   ```
+**State management** — Shared data (like transactions and user role) lives in a global `DashboardContext` via React's Context API. Local UI stuff like modal open/close stays inside the component that needs it.
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+**Performance** — Heavy components like charts and tables are wrapped in `React.memo` to skip unnecessary re-renders. `useMemo` and `useCallback` are used where recalculating on every render would be wasteful. The app also uses `React.lazy` + `Suspense` for code splitting, so only what's needed gets loaded.
 
-3. **Install specialized chart libraries**:
-   ```bash
-   npm install chart.js react-chartjs-2
-   ```
+**Theming** — A custom `ThemeContext` handles dark/light mode. It checks your system preference on first load, lets you override it manually, and remembers your choice in `localStorage`.
 
-### Running the Project
+---
 
-1. **Start the development server**:
-   ```bash
-   npm run dev
-   ```
+## Getting Started
 
-2. **Open the application**:
-   The terminal will provide a local URL (typically `http://localhost:5173`). Open this in your browser to view the dashboard.
+You'll need **Node.js v16+** and **npm v7+**.
 
-### Building for Production
+**1. Navigate to the project folder:**
+```bash
+cd Finance-Dashboard
+```
 
-To create an optimized production build:
+**2. Install dependencies:**
+```bash
+npm install
+```
+
+**3. Install the charting library:**
+```bash
+npm install chart.js react-chartjs-2
+```
+
+**4. Run the dev server:**
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173` in your browser.
+
+---
+
+## Build for Production
 ```bash
 npm run build
 ```
-The output will be generated in the `dist/` directory.
+
+Output goes into the `dist/` folder, ready to deploy.
