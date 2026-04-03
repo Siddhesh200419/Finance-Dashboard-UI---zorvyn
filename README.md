@@ -1,6 +1,6 @@
 # fin.sight — Finance Dashboard
 
-A structured and optimized React-based finance dashboard converted from a monolithic HTML template.
+A structured and optimized React-based finance dashboard.
 
 ## Overview of Approach
 
